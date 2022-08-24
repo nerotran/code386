@@ -29,7 +29,29 @@ void resize(int width, int height) {
 	frameBuffer.setFrameBufferSize(width, height);
 	glutPostRedisplay();
 }
+
+void f(int &v) {
+	v++;
+}
+
+double hypot(double a, double b) {
+	return sqrt(a*a + b*b);
+}
+
+void max(int &a, int &b) {
+
+	if (a > b) b = a;
+	else a = b;
+
+}
+
 int main(int argc, char* argv[]) {
+	int a = 6;
+	int b = 7;
+	max(a, b);
+	cout << a << endl;
+	cout << b << endl;
+	
 
 	return 0;
 }
