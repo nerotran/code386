@@ -16,6 +16,23 @@
 #include "framebuffer.h"
 #include "utilities.h"
 #include "ishape.h"
+/*
+* Just here to practice the debugger
+* Counts how many steps it takes to get
+* from the start number to 10, if we increase
+* by a given increment:
+* stepsToTen(6,1) --> 4
+* stepsToTen(8.5,0.5) --> 3
+*/
+int stepsToTen(double start, double inc) {
+
+	int steps = 0;
+	while (start != 10) {
+		start += inc;
+		steps++;
+	}
+	return steps;
+}
 
  /**
   * @fn	void swap(double &a, double &b)
@@ -26,7 +43,9 @@
   */
 
 void swap(double& a, double& b) {
-	/* CSE 386 - todo  */
+	double c = a;
+	a = b;
+	b = c;
 }
 
 /**
@@ -42,8 +61,7 @@ void swap(double& a, double& b) {
 */
 
 bool approximatelyEqual(double a, double b) {
-	/* CSE 386 - todo  */
-	return false;
+	return abs(a - b) <= EPSILON;
 }
 
 /**
@@ -58,8 +76,7 @@ bool approximatelyEqual(double a, double b) {
  */
 
 bool approximatelyZero(double a) {
-	/* CSE 386 - todo  */
-	return false;
+	return abs(a) <= EPSILON;
 }
 
 /**
@@ -77,8 +94,7 @@ bool approximatelyZero(double a) {
  */
 
 double normalizeDegrees(double degrees) {
-	/* CSE 386 - todo  */
-	return 0;
+	return glm::mod(degrees, 360.0);
 }
 
 /**
@@ -96,8 +112,7 @@ double normalizeDegrees(double degrees) {
  */
 
 double normalizeRadians(double rads) {
-	/* CSE 386 - todo  */
-	return 0;
+	return glm::mod(rads, 2*PI);
 }
 
 /**
@@ -110,8 +125,8 @@ double normalizeRadians(double rads) {
  */
 
 double rad2deg(double rads) {
-	/* CSE 386 - todo  */
-	return 0;
+	
+	return rads * 180 / PI;
 }
 
 /**
@@ -124,8 +139,7 @@ double rad2deg(double rads) {
  */
 
 double deg2rad(double degs) {
-	/* CSE 386 - todo  */
-	return 0;
+	return degs / 180 * PI;
 }
 
 /**
@@ -139,8 +153,7 @@ double deg2rad(double degs) {
 */
 
 double min(double a, double b, double c) {
-	/* CSE 386 - todo  */
-	return 0;
+	return glm::min(a, glm::min(b,c));
 }
 
 /**
@@ -154,8 +167,7 @@ double min(double a, double b, double c) {
 */
 
 double max(double a, double b, double c) {
-	/* CSE 386 - todo  */
-	return 0;
+	return glm::max(a, glm::max(b, c));
 }
 
 /**
@@ -173,8 +185,7 @@ double max(double a, double b, double c) {
 */
 
 double distanceFromOrigin(double x, double y) {
-	/* CSE 386 - todo  */
-	return 0;
+	return sqrt(x*x + y*y);
 }
 
 /**
@@ -195,8 +206,7 @@ double distanceFromOrigin(double x, double y) {
 */
 
 double distanceBetween(double x1, double y1, double x2, double y2) {
-	/* CSE 386 - todo  */
-	return 0;
+	return sqrt(glm::pow(x1-x2,2) + glm::pow(y1-y2,2));
 }
 
 /**
@@ -213,8 +223,8 @@ double distanceBetween(double x1, double y1, double x2, double y2) {
  */
 
 double areaOfTriangle(double a, double b, double c) {
-	/* CSE 386 - todo  */
-	return 0;
+	double s = (a + b + c) / 2;
+	return sqrt(s*(s-a)*(s-b)*(s-c));
 }
 
 /**
@@ -232,8 +242,10 @@ double areaOfTriangle(double a, double b, double c) {
  */
 
 double areaOfTriangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-	/* CSE 386 - todo  */
-	return 0;
+	double a = distanceBetween(x1, y1, x2, y2);
+	double b = distanceBetween(x1, y1, x3, y3);
+	double c = distanceBetween(x3, y3, x2, y2);
+	return areaOfTriangle(a,b,c);
 }
 /**
  * @fn	void pointOnUnitCircle(double angleRads, double &x, double &y)
@@ -246,7 +258,8 @@ double areaOfTriangle(double x1, double y1, double x2, double y2, double x3, dou
 
 void pointOnUnitCircle(double angleRads, double& x, double& y) {
 	/* CSE 386 - todo  */
-	x = y = 0;
+	x = glm::cos(angleRads);
+	y = glm::sin(angleRads);
 }
 
 /**

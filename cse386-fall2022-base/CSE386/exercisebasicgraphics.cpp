@@ -30,28 +30,9 @@ void resize(int width, int height) {
 	glutPostRedisplay();
 }
 
-void f(int &v) {
-	v++;
-}
-
-double hypot(double a, double b) {
-	return sqrt(a*a + b*b);
-}
-
-void max(int &a, int &b) {
-
-	if (a > b) b = a;
-	else a = b;
-
-}
-
 int main(int argc, char* argv[]) {
-	int a = 6;
-	int b = 7;
-	max(a, b);
-	cout << a << endl;
-	cout << b << endl;
-	
-
+	// This is where you will do your testing of the functions
+		// you implement in utilities.cpp
+	std::cout << deg2rad(360) << std::endl;
 	return 0;
 }
