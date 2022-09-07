@@ -33,6 +33,8 @@ void resize(int width, int height) {
 int main(int argc, char* argv[]) {
 	// This is where you will do your testing of the functions
 		// you implement in utilities.cpp
-	std::cout << deg2rad(360) << std::endl;
+	double roots[2];
+	std::cout << quadratic(1, 0, 0, roots) << std::endl;
+	std::cout << roots[0] << " " << roots[1] << std::endl;
 	return 0;
 }

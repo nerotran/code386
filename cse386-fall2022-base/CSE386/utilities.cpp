@@ -486,9 +486,8 @@ dvec3 pointingVector(const dvec3& pt1, const dvec3& pt2) {
  * @test	map(2, 0, 5, 10, 11) --> 10.4
  */
 
-double map(double x, double fromLo, double fromHi, double toLo, double toHi) {
-	/* CSE 386 - todo  */
-	return 0;
+double map(double x, double fromLo, double fromHi, double toLo, double toHi) {	
+	return ((x-fromLo)/(fromHi-fromLo)*(toHi-toLo))+(toLo);
 }
 
 /**
@@ -510,8 +509,12 @@ double map(double x, double fromLo, double fromHi, double toLo, double toHi) {
 vector<double> quadratic(double A, double B, double C) {
 	/* CSE 386 - todo  */
 	vector<double> result;	// put only the roots in here
-	result.push_back(0);
-	result.push_back(1);
+	if (B * B - (4 * A * C) >= 0) {
+		result.push_back((-B - sqrt(B * B - (4 * A * C))) / (2 * A));
+		if (B * B - (4 * A * C) > 0) {
+			result.push_back((-B + sqrt(B * B - (4 * A * C))) / (2 * A));
+		}
+	}
 	return result;
 }
 
@@ -550,9 +553,15 @@ vector<double> quadratic(double A, double B, double C) {
 int quadratic(double a, double b, double c, double roots[2]) {
 	/* CSE 386 - todo  */
 	int rootCnt = 0;
-	roots[0] = 1;
-	roots[1] = 2;
-	return 2;
+	if (b * b - (4 * a * c) >= 0) {
+		roots[0] = (-b - sqrt(b * b - (4 * a * c))) / (2 * a);
+		rootCnt++;
+		if (b * b - (4 * a * c) > 0) {
+			roots[1] = (-b + sqrt(b * b - (4 * a * c))) / (2 * a);
+			rootCnt++;
+		}
+	}
+	return rootCnt;
 }
 
 /**
