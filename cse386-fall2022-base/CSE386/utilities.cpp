@@ -273,8 +273,7 @@ void pointOnUnitCircle(double angleRads, double& x, double& y) {
 */
 
 dvec2 pointOnCircle(const dvec2& center, double R, double angleRads) {
-	/* CSE 386 - todo  */
-	return dvec2(0, 0);
+	return dvec2(center.x + R * glm::cos(angleRads), center.y + R * glm::sin(angleRads));
 }
 
 /**
@@ -291,8 +290,7 @@ dvec2 pointOnCircle(const dvec2& center, double R, double angleRads) {
 */
 
 double directionInRadians(const dvec2& referencePt, const dvec2& targetPt) {
-	/* CSE 386 - todo  */
-	return 0;
+	return glm::mod(std::atan2((targetPt.y-referencePt.y), (targetPt.x - referencePt.x)), PI*2);
 }
 
 /**
@@ -305,8 +303,7 @@ double directionInRadians(const dvec2& referencePt, const dvec2& targetPt) {
 * @test	directionInRadians((0,-2)) --> 4.7123889804
 */
 double directionInRadians(const dvec2& targetPt) {
-	/* CSE 386 - todo  */
-	return 0;
+	return directionInRadians(dvec2(0,0),targetPt);
 }
 
 /**
@@ -323,8 +320,7 @@ double directionInRadians(const dvec2& targetPt) {
 * @test	directionInRadians(2,2,2,0) --> 4.7123889804
 */
 double directionInRadians(double x1, double y1, double x2, double y2) {
-	/* CSE 386 - todo  */
-	return 0;
+	return directionInRadians(dvec2(x1, y1), dvec2(x2, y2));
 }
 
 /**
