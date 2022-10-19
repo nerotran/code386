@@ -30,10 +30,28 @@ void resize(int width, int height) {
 	glutPostRedisplay();
 }
 
-int main(int argc, char* argv[]) {
+int old_main(int argc, char* argv[]) {
 	// This is where you will do your testing of the functions
 		// you implement in utilities.cpp
-	std::cout << areaOfTriangle(dvec3(0.0, 0.0, 0.0), dvec3(1.0, 0.0, 0.0), dvec3(0.0, 1.0, 0.0)) << std::endl;
-	std::cout << areaOfTriangle(dvec3(-10.0, -10.0, -10.0), dvec3(-11.0, -10.0, -10.0), dvec3(-10.0, -11.0, -10.0)) << std::endl;
+	double roots[2];
+	int numRoots = quadratic(-1, 2, 5, roots);
+	if (numRoots == 0) {
+		std::cout << "There are no real roots" << endl;
+		
+	}
+	else if (numRoots == 1) {
+		std::cout << "Only one root: " << roots[0] << endl;
+		
+	}
+	else if (numRoots == 2) {
+		if (roots[0] > roots[1])
+			std::cout << "Something is wrong. This should not happen" << endl;
+		else
+			std::cout << "Two roots: " << roots[0] << " and " << roots[1] << endl;
+	}
+	else {
+		cout << "Something is wrong. This should not happen" << endl;
+		
+	}
 	return 0;
 }

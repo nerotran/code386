@@ -11,6 +11,8 @@
 #include <istream>
 #include <iomanip>
 #include <cstdlib>
+#include <algorithm>
+#include <vector> 
 
 #include "defs.h"
 #include "framebuffer.h"
@@ -514,6 +516,7 @@ vector<double> quadratic(double A, double B, double C) {
 			result.push_back((-B + sqrt(B * B - (4 * A * C))) / (2 * A));
 		}
 	}
+	std::sort(result.begin(), result.end());
 	return result;
 }
 
@@ -560,6 +563,7 @@ int quadratic(double a, double b, double c, double roots[2]) {
 			rootCnt++;
 		}
 	}
+	std::sort(roots , roots+2);
 	return rootCnt;
 }
 
