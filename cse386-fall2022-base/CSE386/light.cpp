@@ -21,7 +21,7 @@
 
 color ambientColor(const color& matAmbient, const color& lightColor) {
 	/* CSE 386 - todo  */
-	return matAmbient;
+	return matAmbient * lightColor;
 }
 
 /**
@@ -37,7 +37,9 @@ color ambientColor(const color& matAmbient, const color& lightColor) {
 color diffuseColor(const color& matDiffuse, const color& lightColor,
 	const dvec3& l, const dvec3& n) {
 	/* CSE 386 - todo  */
-	return matDiffuse;
+	double ln = glm::dot(l, n);
+	ln = max(0, 0, ln);
+	return matDiffuse * lightColor * ln;
 
 }
 
@@ -56,8 +58,9 @@ color diffuseColor(const color& matDiffuse, const color& lightColor,
 color specularColor(const color& matSpecular, const color& lightColor,
 	double shininess,
 	const dvec3& r, const dvec3& v) {
-	/* CSE 386 - todo  */
-	return matSpecular;
+	double rv = glm::dot(r, v);
+	rv = pow(max(0, 0, rv), shininess);
+	return matSpecular * lightColor * rv;
 }
 
 /**
@@ -82,7 +85,6 @@ color totalColor(const Material& mat, const color& lightColor,
 	const dvec3& lightPos, const dvec3& intersectionPt,
 	bool attenuationOn,
 	const LightATParams& ATparams) {
-	/* CSE 386 - todo  */
 	return mat.diffuse;
 }
 
