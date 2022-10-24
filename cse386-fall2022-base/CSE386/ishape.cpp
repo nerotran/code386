@@ -162,7 +162,13 @@ IDisk::IDisk(const dvec3& pos, const dvec3& normal, double rad)
 
 void IDisk::findClosestIntersection(const Ray& ray, HitRecord& hit) const {
 	/* CSE 386 - todo  */
-	hit.t = FLT_MAX;
+	IPlane plane(center, n);
+	plane.findClosestIntersection(ray, hit);
+	dvec3 intercept = hit.interceptPt;
+	double distance = sqrt((intercept.x-center.x)* (intercept.x - center.x) + (intercept.y - center.y) * (intercept.y - center.y) + (intercept.z - center.z) * (intercept.z - center.z));
+	if (distance > radius){
+		hit.t = FLT_MAX;
+	}
 }
 
 /**
@@ -389,9 +395,18 @@ bool IPlane::onFrontSide(const dvec3& point) const {
 
 void IPlane::findClosestIntersection(const Ray& ray, HitRecord& hit) const {
 	/* CSE 386 - todo  */
-	hit.t = FLT_MAX;
-	hit.interceptPt = ORIGIN3D;
-	hit.normal = Y_AXIS;
+	double t = glm::dot((a - ray.origin), n) / glm::dot(ray.dir, n);
+	if (approximatelyZero(glm::dot(ray.dir, n)) || t < 0) {
+		hit.t = FLT_MAX;
+		hit.interceptPt = ORIGIN3D;
+		hit.normal = ORIGIN3D;
+	}
+	else {
+		hit.t = t;
+		hit.interceptPt = (t * ray.dir) + ray.origin;
+		hit.normal = n;
+	}
+	
 }
 
 /**
@@ -699,6 +714,17 @@ void IConeY::findClosestIntersection(const Ray& ray, HitRecord& hit) const {
 		hit.t = FLT_MAX;
 	} else {
 		hit = hits[0];
+		if (abs(hit.interceptPt.y - center.y) > height / 2) {
+			if (numHits == 2) {
+				hit = hits[1];
+				if (abs(hit.interceptPt.y - center.y) > height / 2) {
+					hit.t = FLT_MAX;
+				}
+			}
+			else {
+				hit.t = FLT_MAX;
+			}
+		}
 	}
 }
 
@@ -738,6 +764,17 @@ void ICylinderY::findClosestIntersection(const Ray& ray, HitRecord& hit) const {
 		hit.t = FLT_MAX;
 	} else {
 		hit = hits[0];
+		if (abs(hit.interceptPt.y - center.y) > length / 2.0) {
+			if (numHits == 2) {
+				hit = hits[1];
+				if (abs(hit.interceptPt.y - center.y) > length / 2.0) {
+					hit.t = FLT_MAX;
+				}
+			} else {
+				hit.t = FLT_MAX;
+			}
+		}
+		
 	}
 }
 

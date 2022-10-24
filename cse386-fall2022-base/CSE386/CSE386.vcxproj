@@ -167,19 +167,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="CameraRayShapeTests.cpp" />
     <ClCompile Include="colorandmaterials.cpp" />
     <ClCompile Include="defs.cpp" />
     <ClCompile Include="eshape.cpp" />
-    <ClCompile Include="exercisebasicgraphics.cpp" />
     <ClCompile Include="fragmentops.cpp" />
     <ClCompile Include="framebuffer.cpp" />
     <ClCompile Include="image.cpp" />
+    <ClCompile Include="IntersectionTests.cpp" />
     <ClCompile Include="io.cpp" />
     <ClCompile Include="iscene.cpp" />
     <ClCompile Include="ishape.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="rasterization.cpp" />
     <ClCompile Include="raytracer.cpp" />
+    <ClCompile Include="SampleRaytrace.cpp" />
+    <ClCompile Include="SphereIntersectionTests.cpp" />
     <ClCompile Include="utilities.cpp" />
     <ClCompile Include="vertexops.cpp" />
     <ClCompile Include="vertextdata.cpp" />
